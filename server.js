@@ -1,11 +1,15 @@
 const express = require('express');
-const mongoose =require('mongoose');
+const mongoose = require('mongoose');
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
+const boddyParser = require('vody-parser');
+
 const app = express();
 
-
+// Body parser middleware
+app.use(boddyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 //Db config
 const db = require('./config/keys').mongoURI;
 //connect to mongodb
